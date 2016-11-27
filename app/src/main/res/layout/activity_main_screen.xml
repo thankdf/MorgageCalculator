@@ -131,14 +131,15 @@
                         android:textColor="#1d47ff"
                         android:textSize="20dp" />
 
-                    <NumberPicker
+                    <EditText
                         android:layout_width="fill_parent"
-                        android:layout_height="50dp"
-                        android:id="@+id/termsNumberPicker"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/termsTextField"
                         android:layout_marginTop="25dp"
                         android:background="@drawable/bill"
-                        android:orientation="horizontal"
-                        android:scrollIndicators="top|bottom" />
+                        android:gravity="center" />
 
                 </LinearLayout>
 

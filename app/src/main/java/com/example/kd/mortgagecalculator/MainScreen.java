@@ -6,9 +6,10 @@ import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 
@@ -25,9 +26,8 @@ public class MainScreen extends AppCompatActivity {
         downPayment.setFilters(new InputFilter[]{new MoneyFilter(8, 2)});
         final EditText interestRate = (EditText) findViewById(R.id.interestRateTextField);
         interestRate.setFilters(new InputFilter[]{new MoneyFilter(3, 2)});
-        final NumberPicker terms = (NumberPicker) findViewById(R.id.termsNumberPicker);
-        String[] yearValues = {"15", "20", "25", "30", "40"};
-        terms.setDisplayedValues(yearValues);
+        final EditText terms = (EditText) findViewById(R.id.termsTextField);
+        final String[] yearValues = {"15", "20", "25", "30", "40"};
         final EditText propertyTax = (EditText) findViewById(R.id.propertyTaxTextField);
         propertyTax.setFilters(new InputFilter[]{new MoneyFilter(3, 2)});
         final TextView totalTaxPaid = (TextView) findViewById(R.id.totalTaxPaidTextField);
@@ -41,64 +41,82 @@ public class MainScreen extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                double monthlyRate = Double.valueOf(interestRate.getText().toString()) / 1200.0;
-                int numberOfPeriods = terms.getValue() * 12;
-                double loanValue = Double.valueOf(homeValue.getText().toString()) - Double.valueOf(downPayment.getText().toString());
-                double mortgagePayment = loanValue * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPeriods))/(Math.pow(1+monthlyRate, numberOfPeriods) - 1);
-                double interestPaidTotal = mortgagePayment * numberOfPeriods - loanValue;
-                double propertyTaxTotal = Integer.valueOf(homeValue.getText().toString()) * Double.valueOf(propertyTax.getText().toString())/100.0 * terms.getValue();
-                double monthlyPaymentTotal = propertyTaxTotal/numberOfPeriods + mortgagePayment;
-                Calendar calendar = Calendar.getInstance();
-                int month = calendar.get(Calendar.MONTH);
-                int year = calendar.get(Calendar.YEAR);
-                String endMonth = "";
-                switch(month)
+                if((homeValue.getText().toString()).equals("") || (downPayment.getText().toString()).equals("") || (interestRate.getText().toString()).equals("") || (terms.getText().toString().equals("")))
                 {
-                    case(0):
-                        endMonth = "December";
-                        break;
-                    case(1):
-                        endMonth = "January";
-                        break;
-                    case(2):
-                        endMonth = "February";
-                        break;
-                    case(3):
-                        endMonth = "March";
-                        break;
-                    case(4):
-                        endMonth = "April";
-                        break;
-                    case(5):
-                        endMonth = "May";
-                        break;
-                    case(6):
-                        endMonth = "June";
-                        break;
-                    case(7):
-                        endMonth = "July";
-                        break;
-                    case(8):
-                        endMonth = "August";
-                        break;
-                    case(9):
-                        endMonth = "September";
-                        break;
-                    case(10):
-                        endMonth = "October";
-                        break;
-                    case(11):
-                        endMonth = "November";
-                        break;
-                    default:
-                        break;
+                    Toast.makeText(getApplicationContext(),
+                            "One or more fields are empty.", Toast.LENGTH_SHORT).show();
                 }
-                int endYear = year + terms.getValue();
-                String endOfPayOff = endMonth + " " + String.valueOf(endYear);
-                totalTaxPaid.setText(toTwoDecimalPlaces(String.valueOf(propertyTaxTotal)));
-                totalInterestPaid.setText(toTwoDecimalPlaces(String.valueOf(interestPaidTotal)));
-                monthlyPayment.setText(toTwoDecimalPlaces(String.valueOf(monthlyPaymentTotal)));
-                payOffDate.setText(String.valueOf(endOfPayOff));
+                else if(Arrays.asList(yearValues).contains(Integer.valueOf(terms.getText().toString())))
+                {
+                    String message = "The term length must be either ";
+                    for(String year: yearValues)
+                    {
+                        message += year + " ";
+                    }
+                    message += "years.";
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    double monthlyRate = Double.valueOf(interestRate.getText().toString()) / 1200.0;
+                    int numberOfPeriods = Integer.valueOf(terms.getText().toString()) * 12;
+                    double loanValue = Double.valueOf(homeValue.getText().toString()) - Double.valueOf(downPayment.getText().toString());
+                    double mortgagePayment = loanValue * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPeriods))/(Math.pow(1+monthlyRate, numberOfPeriods) - 1);
+                    double interestPaidTotal = mortgagePayment * numberOfPeriods - loanValue;
+                    double propertyTaxTotal = Integer.valueOf(homeValue.getText().toString()) * Double.valueOf(propertyTax.getText().toString())/100.0 * Integer.valueOf(terms.getText().toString());
+                    double monthlyPaymentTotal = propertyTaxTotal/numberOfPeriods + mortgagePayment;
+                    Calendar calendar = Calendar.getInstance();
+                    int month = calendar.get(Calendar.MONTH);
+                    int year = calendar.get(Calendar.YEAR);
+                    String endMonth = "";
+                    switch(month)
+                    {
+                        case(0):
+                            endMonth = "December";
+                            break;
+                        case(1):
+                            endMonth = "January";
+                            break;
+                        case(2):
+                            endMonth = "February";
+                            break;
+                        case(3):
+                            endMonth = "March";
+                            break;
+                        case(4):
+                            endMonth = "April";
+                            break;
+                        case(5):
+                            endMonth = "May";
+                            break;
+                        case(6):
+                            endMonth = "June";
+                            break;
+                        case(7):
+                            endMonth = "July";
+                            break;
+                        case(8):
+                            endMonth = "August";
+                            break;
+                        case(9):
+                            endMonth = "September";
+                            break;
+                        case(10):
+                            endMonth = "October";
+                            break;
+                        case(11):
+                            endMonth = "November";
+                            break;
+                        default:
+                            break;
+                    }
+                    int endYear = year + Integer.valueOf(terms.getText().toString());
+                    String endOfPayOff = endMonth + " " + String.valueOf(endYear);
+                    totalTaxPaid.setText(toTwoDecimalPlaces(String.valueOf(propertyTaxTotal)));
+                    totalInterestPaid.setText(toTwoDecimalPlaces(String.valueOf(interestPaidTotal)));
+                    monthlyPayment.setText(toTwoDecimalPlaces(String.valueOf(monthlyPaymentTotal)));
+                    payOffDate.setText(String.valueOf(endOfPayOff));
+                }
             }
         });
         Button reset = (Button) findViewById(R.id.resetButton);
@@ -110,7 +128,7 @@ public class MainScreen extends AppCompatActivity {
                 homeValue.setText("");
                 downPayment.setText("");
                 interestRate.setText("");
-                terms.setValue(15);
+                terms.setText("");
                 propertyTax.setText("");
                 totalTaxPaid.setText("");
                 totalInterestPaid.setText("");
