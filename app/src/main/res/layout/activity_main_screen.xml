@@ -1,0 +1,317 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainScreen"
+    android:background="#dedeff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textFields">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/firstRow"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:text="Home Value"
+                        android:id="@+id/homeValue"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:textColor="#1d47ff"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number|numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/homeValueTextField"
+                        android:layout_marginTop="25dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/bill"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/secondRow" >
+
+                    <TextView
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:text="Down Payment"
+                        android:id="@+id/downPayment"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:textColor="#1d47ff"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="number|numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/downPaymentTextField"
+                        android:layout_marginTop="25dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/bill"
+                        android:gravity="center"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/thirdRow" >
+
+                    <TextView
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:text="Interest Rate"
+                        android:id="@+id/interestRate"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:textColor="#1d47ff"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number|numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/interestRateTextField"
+                        android:layout_marginTop="25dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/bill"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fourthRow" >
+
+                    <TextView
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:text="Terms"
+                        android:id="@+id/terms"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:textColor="#1d47ff"
+                        android:textSize="20dp" />
+
+                    <NumberPicker
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/termsNumberPicker"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/bill"
+                        android:orientation="horizontal"
+                        android:scrollIndicators="top|bottom" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fifthRow" >
+
+                    <TextView
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:text="Property Tax"
+                        android:id="@+id/propertyTax"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:textColor="#1d47ff"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number|numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/propertyTaxTextField"
+                        android:layout_marginTop="25dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/bill"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sixthRow" >
+
+                    <TextView
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:text="Total Tax Paid"
+                        android:id="@+id/totalTaxPaid"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:textColor="#1d47ff"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/totalTaxPaidTextField"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/bill"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/seventhRow" >
+
+                    <TextView
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:text="Total Interest Paid"
+                        android:id="@+id/totalInterestPaid"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:textColor="#1d47ff"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/totalInterestPaidTextField"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/bill"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/eighthRow" >
+
+                    <TextView
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:text="Monthly Payment"
+                        android:id="@+id/monthlyPayment"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:textColor="#1d47ff"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/monthlyPaymentTextField"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/bill"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ninthRow" >
+
+                    <TextView
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:text="Pay Off Date"
+                        android:id="@+id/payOffDate"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:textColor="#1d47ff"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/payOffDateTextField"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/bill"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonLayout">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/resetButton"
+                        android:background="@drawable/reset"
+                        android:layout_weight="1"
+                        android:layout_marginTop="5dp" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/buttonSpace"
+                        android:layout_weight="100" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/calculateButton"
+                        android:singleLine="false"
+                        android:layout_gravity="right"
+                        android:background="@drawable/calculate"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
